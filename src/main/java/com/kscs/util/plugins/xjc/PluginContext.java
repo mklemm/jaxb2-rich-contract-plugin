@@ -100,6 +100,7 @@ public class PluginContext extends Plugin {
 	public static final String INIT_METHOD_NAME = "init";
 	public static final String ADD_METHOD_PREFIX = "add";
 	public static final String WITH_METHOD_PREFIX = "with";
+	public static final String GET_METHOD_PREFIX = "get";
 	public static final String NEW_OBJECT_VAR_NAME = "_newObject";
 	public static final String ADD_ALL = "addAll";
 	public static final String CLONE_METHOD_NAME = "clone";
@@ -113,6 +114,7 @@ public class PluginContext extends Plugin {
 	public static final String COPY_TO_METHOD_NAME = "copyTo";
 	private static final String AS_LIST = "asList";
 	private static final String UNMODIFIABLE_LIST = "unmodifiableList";
+	private static final String EMPTY_LIST = "emptyList";
 	public final JCodeModel codeModel;
 	public final JClass arrayListClass;
 	public final JClass listClass;
@@ -324,6 +326,10 @@ public class PluginContext extends Plugin {
 
 	public JInvocation unmodifiableList(final JExpression expression) {
 		return this.collectionsClass.staticInvoke(PluginContext.UNMODIFIABLE_LIST).arg(expression);
+	}
+
+	public JInvocation emptyList() {
+		return this.collectionsClass.staticInvoke(PluginContext.EMPTY_LIST);
 	}
 
 	public boolean hasPlugin(final Class<? extends Plugin> pluginClass) {
